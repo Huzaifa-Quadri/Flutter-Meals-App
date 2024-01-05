@@ -65,7 +65,10 @@ class CategoriesScreen extends StatelessWidget {
     Navigator.push(
       context, 
       MaterialPageRoute(
-        builder: (ctx) => Meals(title: category.title, meals: filteredMeals),
+        builder: (ctx) => Meals(
+          title: category.title, 
+          meals: filteredMeals
+        ),
       ),
     );
   }
@@ -73,7 +76,7 @@ class CategoriesScreen extends StatelessWidget {
   @override
   
   Widget build(BuildContext context) {
-    // return Scaffold(                         ?? Removing Scaffold here because of 2 title bar 
+    // return Scaffold(           //?? Removing Scaffold here because of 2 title bar 
     //   appBar: AppBar(
     //     title: const Text('Pick your category'),
     //   ),
@@ -90,7 +93,7 @@ class CategoriesScreen extends StatelessWidget {
           for (final category in availableCategories)     //* availableCategories.map((category) => CategoryGridItem(category: category)).toList()
             CategoryItem(
               category: category, 
-              onSelectCategory: () {
+              onSelectCategory: () {    // TODO: function that gets ontap value here
                 _selectCategory(context, category);
               },
             )
