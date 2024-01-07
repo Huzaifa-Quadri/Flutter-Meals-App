@@ -13,55 +13,63 @@ class MealDetails extends StatelessWidget {
       appBar: AppBar(
         title: Text(meal.title),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Image.network(
-              meal.imageUrl,
-              height: 280,
-              width: double.infinity,
-            ),
+      body: Scrollbar(           //* Adding scrollbar on my own
+        trackVisibility: true,
+        thickness: 10,
+        radius: const Radius.circular(20),
+        interactive: true,
 
-            const SizedBox(height: 15,),
-
-            Text("Ingeredients",                     //Ingredient Heading
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge!
-                  .copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer)
-            ),
-
-            for (final ingredient in meal.ingredients)      //Ingr text
-                Text(ingredient,
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground,
-                    ),
-                ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Image.network(
+                meal.imageUrl,
+                height: 280,
+                width: double.infinity,
+              ),
+      
+              const SizedBox(height: 15,),
+      
+              Text("Ingeredients",                     //Ingredient Heading
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge!
+                    .copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer)
+              ),
+      
+              for (final ingredient in meal.ingredients)      //Ingr text
+                  Text(ingredient,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.onBackground,
+                      ),
+                  ),
+                
+                const SizedBox(height: 24),
               
-              const SizedBox(height: 24),
-            
-            Text(                             //Steps Heading
-               "Steps to Make",
-               style: Theme.of(context)
-                  .textTheme
-                  .titleLarge!
-                  .copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer),
-            ),
-
-            for(final step in meal.steps)
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 8
-                  ),
-                  child: Text(
-                    step,
-                    style: Theme.of(context)
-                      .textTheme.bodyMedium!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground)
-                  ),
-                )
-          ],
+              Text(                             //Steps Heading
+                 "Steps to Make",
+                 style: Theme.of(context)
+                    .textTheme
+                    .titleLarge!
+                    .copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer),
+              ),
+      
+              for(final step in meal.steps)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 8
+                    ),
+                    child: Text(
+                      step,
+                      textAlign: TextAlign.end,
+                      style: Theme.of(context)
+                        .textTheme.bodyMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.onBackground)
+                    ),
+                  )
+            ],
+          ),
         ),
       ),
     );
