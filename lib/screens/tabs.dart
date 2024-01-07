@@ -12,7 +12,7 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  final int _selectedPage = 0;
+  int _selectedPage = 0;
   // final List<Meal> _favouritemeals = [];
 
   // void _maintainfavourites(Meal meal){
@@ -22,11 +22,11 @@ class _TabsScreenState extends State<TabsScreen> {
   //     _favouritemeals.add(meal);
   //   }
   // }
-  // void _selectPage(int index){
-  //   setState(() {
-  //     _selectedPage = index;
-  //   });
-  // }
+  void _selectPage(int index){
+    setState(() {
+      _selectedPage = index; 
+    });
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class _TabsScreenState extends State<TabsScreen> {
     if (_selectedPage == 1) {
       activepageTitle = 'Favourites';
       activePage = const Meals( meals: []);   //TODO: Done!!!!
-      
+       
     }
 
     return Scaffold(
@@ -46,7 +46,7 @@ class _TabsScreenState extends State<TabsScreen> {
       ),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
-        onTap: (samplecontexttobedeleted) {},
+        onTap: _selectPage,
         currentIndex: _selectedPage,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.set_meal), label: 'Categories'),
