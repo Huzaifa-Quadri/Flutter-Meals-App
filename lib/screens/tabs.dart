@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals/models/meal.dart';
 import 'package:meals/screens/categories.dart';
 import 'package:meals/screens/meals.dart';
 
@@ -13,15 +14,15 @@ class TabsScreen extends StatefulWidget {
 
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedPage = 0;
-  // final List<Meal> _favouritemeals = [];
+  final List<Meal> _favouritemeals = [];
 
-  // void _maintainfavourites(Meal meal){
-  //   if(_favouritemeals.contains(meal)){
-  //     _favouritemeals.remove(meal);
-  //   }else{
-  //     _favouritemeals.add(meal);
-  //   }
-  // }
+  void _maintainfavourites(Meal meal){
+    if(_favouritemeals.contains(meal)){
+      _favouritemeals.remove(meal);
+    }else{
+      _favouritemeals.add(meal);
+    }
+  }
   void _selectPage(int index){
     setState(() {
       _selectedPage = index; 
@@ -31,14 +32,15 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   Widget build(BuildContext context) {
 
-    Widget activePage = const CategoriesScreen();
+    Widget activePage = CategoriesScreen(onToggleFavourite: _maintainfavourites,); 
     var activepageTitle = 'Categories';
 
     if (_selectedPage == 1) {
       activepageTitle = 'Favourites';
-      activePage = const Meals( meals: []);   //TODO: Done!!!!
+      activePage = Meals( meals: [], onToggleFavourite: _maintainfavourites);   //TODO: Done!!!!    Comming from _iconOntap() -> Meal_detail ->  Meal_Item -> Meals -> Tabs --> _maintainfavourites()
        
     }
+    
 
     return Scaffold(
       appBar: AppBar(
