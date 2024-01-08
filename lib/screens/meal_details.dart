@@ -12,6 +12,9 @@ class MealDetails extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(meal.title),
+        actions: [
+          IconButton(onPressed: (){}, icon: const Icon(Icons.star))
+        ],
       ),
       body: Scrollbar(           //* Adding scrollbar on my own
         trackVisibility: true,
@@ -62,7 +65,7 @@ class MealDetails extends StatelessWidget {
                     ),
                     child: Text(
                       step,
-                      textAlign: TextAlign.end,
+                      textAlign: TextAlign.center,
                       style: Theme.of(context)
                         .textTheme.bodyMedium!.copyWith(
                           color: Theme.of(context).colorScheme.onBackground)
