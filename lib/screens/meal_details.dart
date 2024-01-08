@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
 
 class MealDetails extends StatelessWidget {
-  const MealDetails({super.key, required this.meal});
+  const MealDetails({super.key, required this.meal, required this.onToggleFavourite,});
 
   final Meal meal;
-  // final void Function (Meal meal) onToggleFavourite;
+  final void Function (Meal meal) onToggleFavourite;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,10 @@ class MealDetails extends StatelessWidget {
       appBar: AppBar(
         title: Text(meal.title),
         actions: [
-          IconButton(onPressed: (){}, icon: const Icon(Icons.star))
+          IconButton(onPressed: () {
+            onToggleFavourite(meal);
+          },
+          icon: const Icon(Icons.star))
         ],
       ),
       body: Scrollbar(           //* Adding scrollbar on my own

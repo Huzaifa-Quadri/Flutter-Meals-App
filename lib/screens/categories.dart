@@ -41,7 +41,6 @@
 //             CategoryItem(category: category, onSelectCategory: (){
 //               _selectedCategory(context, category);
 //             })
-//           // Text("1", style: TextStyle(color: Colors.amberAccent),),
 //         ],
 //       ),
 //     );
@@ -51,12 +50,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:meals/data/dummy_data.dart';
+import 'package:meals/models/meal.dart';
 import 'package:meals/screens/meals.dart';
 import 'package:meals/models/category.dart';
 import 'package:meals/widjets/category_griditem.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+  const CategoriesScreen({super.key, required this.onToggleFavourite});
+
+
+  final void Function (Meal meal) onToggleFavourite;  //Not Understood 
 
   void _selectCategory(BuildContext context, Category category) {
     final filteredMeals = dummyMeals.where((meal) => meal.categories.contains(category.id))
@@ -67,7 +70,8 @@ class CategoriesScreen extends StatelessWidget {
       MaterialPageRoute(
         builder: (ctx) => Meals(
           title: category.title, 
-          meals: filteredMeals
+          meals: filteredMeals,
+          onToggleFavourite: onToggleFavourite,
         ),
       ),
     );

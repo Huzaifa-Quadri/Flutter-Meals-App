@@ -3,10 +3,12 @@ import 'package:meals/models/meal.dart';
 import 'package:meals/widjets/meal_item.dart';
 
 class Meals extends StatelessWidget {
-  const Meals({super.key, this.title, required this.meals});
+  const Meals({super.key, this.title, required this.meals, required this.onToggleFavourite});
 
   final String? title;
   final List<Meal> meals;
+
+  final void Function (Meal meal) onToggleFavourite;
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +33,21 @@ class Meals extends StatelessWidget {
   if (meals.isNotEmpty) {
     bodyContent = ListView.builder(
       itemCount: meals.length,
-      itemBuilder: (ctx, index) => MealItem(meal: meals[index]),
+      itemBuilder: (ctx, index) => MealItem(meal: meals[index], onToggleFavourite: onToggleFavourite,),
     );
   }
-  if(title == null){
+  if(title == null){                
     return bodyContent;
-  }
-  
+  }   
+                    
+  //TODO : we can also eleminate double title other than conditionally by letting indivisula screen themselves set their own appbars intead of one appbar in Tabs Screen forward to indivisual displayed screens.  Code for that is :
+  //* <Just Remove above if & Make following changes in Tabs Screen > -
+   /*
+*     return Scaffold(
+*       body: activePage,
+*       bottomNavigationBar: BottomNavigationBar(...),
+  );
+    */
   return Scaffold(
       appBar: AppBar(
         title: Text(title!),
