@@ -18,15 +18,27 @@ class _TabsScreenState extends State<TabsScreen> {
 
   void _maintainfavourites(Meal meal){
     if(_favouritemeals.contains(meal)){
-      _favouritemeals.remove(meal);
+      setState(() {
+        _favouritemeals.remove(meal);
+        _showfavTogglemessage("Meal removed from favourites !!");
+      });
+      
     }else{
-      _favouritemeals.add(meal);
+      setState(() {
+        _favouritemeals.add(meal);
+        _showfavTogglemessage("Meal added to favourites");
+      });  
     }
   }
   void _selectPage(int index){
     setState(() {
       _selectedPage = index; 
     });
+  }
+
+  void _showfavTogglemessage(String message){
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
   }
   
   @override
@@ -37,8 +49,7 @@ class _TabsScreenState extends State<TabsScreen> {
 
     if (_selectedPage == 1) {
       activepageTitle = 'Favourites';
-      activePage = Meals( meals: const [], onToggleFavourite: _maintainfavourites);   //TODO: Done!!!!    Comming from _iconOntap() -> Meal_detail ->  Meal_Item -> Meals -> Tabs --> _maintainfavourites()
-       
+      activePage = Meals( meals: _favouritemeals, onToggleFavourite: _maintainfavourites);   //TODO: Done!!!!    Comming from _iconOntap() -> Meal_detail ->  Meal_Item -> Meals -> Tabs --> _maintainfavourites()
     }
     
 
