@@ -34,9 +34,9 @@ class AppDrawer extends StatelessWidget {
           )
         ),
         
-        DrawerItem(icon: Icons.fastfood_outlined, title: "Meals", onSelectScreen: onSelectScreen),
-        DrawerItem(icon: Icons.settings, title: "Settings", onSelectScreen: onSelectScreen),       
-        DrawerItem(icon: Icons.filter_alt_sharp, title: "Fliters", onSelectScreen: onSelectScreen,)
+        DrawerItem(icon: Icons.fastfood_outlined, title: "meals", onSelectScreen: onSelectScreen),
+        DrawerItem(icon: Icons.settings, title: "settings", onSelectScreen: onSelectScreen),       
+        DrawerItem(icon: Icons.filter_alt_sharp, title: "filters", onSelectScreen: onSelectScreen,)
       ],
     );
 

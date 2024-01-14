@@ -6,6 +6,11 @@ class DrawerItem extends StatelessWidget {
   final String title;
   final IconData icon;
 
+  String get titleFormat {
+    return title[0].toUpperCase() +
+        title.substring(1);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,7 +22,7 @@ class DrawerItem extends StatelessWidget {
           size: 25,
         ),
         title: Text(
-          title,
+          titleFormat,
           style: Theme.of(context).textTheme.titleSmall!.copyWith(
             color: Theme.of(context).colorScheme.onBackground,
             fontSize: 18
