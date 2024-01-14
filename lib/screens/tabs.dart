@@ -41,6 +41,17 @@ class _TabsScreenState extends State<TabsScreen> {
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
   }
+
+  void _setScreen(String identifier){                // For filter option in app drawer item onClick
+    if (identifier == 'Meals') {
+      Navigator.pop(context);
+    }else if(identifier == 'others'){
+      
+    }
+    else{
+      
+    }
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -58,7 +69,7 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(activepageTitle),
       ),
-      drawer: const AppDrawer(),
+      drawer: AppDrawer(onSelectScreen: _setScreen),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
