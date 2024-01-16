@@ -56,14 +56,14 @@ import 'package:meals/models/category.dart';
 import 'package:meals/widjets/category_griditem.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key, required this.onToggleFavourite});
-
+  const CategoriesScreen({super.key, required this.onToggleFavourite, required this.commingfilteredMeals});
 
   final void Function (Meal meal) onToggleFavourite;  //Not Understood 
+  final List<Meal> commingfilteredMeals;    //contain filetered meals 
 
   void _selectCategory(BuildContext context, Category category) {
-    final filteredMeals = dummyMeals.where((meal) => meal.categories.contains(category.id))
-        .toList();
+    final filteredMeals = commingfilteredMeals.where((meal) => meal.categories.contains(category.id))
+        .toList(); // dummymeals changes to commingavailable meals bcz now only filtered meals are divided and shown according to categories
 
     Navigator.push(
       context, 
