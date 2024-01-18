@@ -9,8 +9,8 @@ import 'package:meals/widjets/appdrawer.dart';
 const kInitialFilters = {
   Filter.glutenFree : false,
   Filter.lactoseFree : false,
-  Filter.vegan : false,
   Filter.vegetarian : false,
+  Filter.vegan : false,
 };
 
 class TabsScreen extends StatefulWidget {
@@ -57,13 +57,17 @@ class _TabsScreenState extends State<TabsScreen> {
   void _setScreen(String identifier)async{                // For filter option in app drawer item onClick
     Navigator.pop(context); //App drawer only opens on category screen so it is right to close it if anyone click Meals
     if(identifier == 'filters'){
-      final result = await Navigator.push<Map<Filter, bool>>(
+      final result = await Navigator.push<Map<Filter, bool>>
+      (
         context,
-        MaterialPageRoute(builder: (ctx) => const Filters()));
+        MaterialPageRoute(builder: (ctx) => Filters(currentorsavedfilters: _selectedfilters)),
+      );
       print(result);
 
-      _selectedfilters = result ?? kInitialFilters;
-      
+      setState(() {
+        _selectedfilters = result ?? kInitialFilters;
+      });
+
     }
   }
   
@@ -73,13 +77,13 @@ class _TabsScreenState extends State<TabsScreen> {
       if(_selectedfilters[Filter.glutenFree]! && !meal.isGlutenFree){  //* _selectedfilters[Filter.glutenFree]! is true if it is toggeled in filter option and 
         return false;                                                  //* !meal.isGlutenFree is true if an indivisual meal is not gluten free so T && T = T where we return false to not select meal
       }
-      if(_selectedfilters[Filter.glutenFree]! && !meal.isGlutenFree){
+      if(_selectedfilters[Filter.lactoseFree]! && !meal.isLactoseFree){
         return false;
       }
-      if(_selectedfilters[Filter.glutenFree]! && !meal.isGlutenFree){
+      if(_selectedfilters[Filter.vegetarian]! && !meal.isVegetarian){
         return false;
       }
-      if(_selectedfilters[Filter.glutenFree]! && !meal.isGlutenFree){
+      if(_selectedfilters[Filter.vegan]! && !meal.isVegan){
         return false;
       }
       return true;

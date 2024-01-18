@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 enum Filter{
   glutenFree,
   lactoseFree,
@@ -7,7 +8,9 @@ enum Filter{
   vegetarian,
 }
 class Filters extends StatefulWidget {
-  const Filters({super.key});
+  const Filters({super.key, required this.currentorsavedfilters});
+
+  final Map<Filter, bool> currentorsavedfilters;                       //* Method or way to reset back all filters to default when we hit the filterScreen again !
 
   @override
   State<StatefulWidget> createState() {
@@ -21,6 +24,15 @@ class _FilterScreen extends State<Filters> {
   var _isVeganfilterset= false;
   var _isVegetarianfilterset= false;
   var _isLactoseFreefilterset= false;
+
+  @override
+  void initState() {                                                                  
+    super.initState();
+    _isglutenFreefilterset = widget.currentorsavedfilters[Filter.glutenFree]!;
+    _isVeganfilterset = widget.currentorsavedfilters[Filter.vegan]!;
+    _isVegetarianfilterset = widget.currentorsavedfilters[Filter.vegetarian]!;
+    _isLactoseFreefilterset = widget.currentorsavedfilters[Filter.lactoseFree]!;
+  }
 
 
   @override
@@ -71,7 +83,7 @@ class _FilterScreen extends State<Filters> {
                 _isVeganfilterset = ischecked;     //*isChecked is boolean value changed by toggling the switch to on or off 
               });
             },
-            title: Text("Vegan-free", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).colorScheme.onBackground)),
+            title: Text("Vegan", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).colorScheme.onBackground)),
             subtitle: Text("Only include vegan Meals", style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Theme.of(context).colorScheme.onBackground)),
             activeColor: Theme.of(context).colorScheme.tertiary,
             contentPadding: const EdgeInsets.only(left: 34,right: 22),
