@@ -52,7 +52,7 @@ class _FilterScreen extends State<Filters> {
             Filter.vegan: _isVeganfilterset,
           });
         },
-    // WillPopScope(           //* Deprecated version & now PopScope is used !
+    // WillPopScope(           //! Deprecated version & now PopScope is used !
     //   onWillPop: () async {
     //     Navigator.pop(context, {
     //       Filter.glutenFree: _isglutenFreefilterset,

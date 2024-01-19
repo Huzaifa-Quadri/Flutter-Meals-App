@@ -6,6 +6,8 @@ import 'package:meals/screens/filters.dart';
 import 'package:meals/screens/meals.dart';
 import 'package:meals/widjets/appdrawer.dart';
 
+// todo:                                                    THIS IS THE ACTUAL HOME PAGE OR SCREEN OF THE ENTIRE APP
+
 const kInitialFilters = {
   Filter.glutenFree : false,
   Filter.lactoseFree : false,

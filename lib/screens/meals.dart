@@ -21,6 +21,11 @@ class Meals extends StatelessWidget {
                 color: Theme.of(context).colorScheme.onPrimaryContainer)),
 
             const SizedBox(height: 16),
+            Text("Nothing Here",
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium!
+                    .copyWith(color: Theme.of(context).hintColor)),
 
             Text("Try Selecting a different Category",
                 style: Theme.of(context)
