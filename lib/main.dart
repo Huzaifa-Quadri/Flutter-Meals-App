@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:meals/screens/categories.dart';
+// import 'package:meals/screens/categories.dart';  //? Initial starting screen of app, now tabs screen
 import 'package:meals/screens/tabs.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));     //! wrapping myapp in rivepod method ProviderScope to Use Riverpod package in whole file or store the state of providers
 }
 
 class MyApp extends StatelessWidget {

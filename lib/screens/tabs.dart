@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meals/data/dummy_data.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meals/provider_pack.dart';
+// import 'package:meals/data/dummy_data.dart';
 import 'package:meals/models/meal.dart';
 import 'package:meals/screens/categories.dart';
 import 'package:meals/screens/filters.dart';
@@ -15,16 +17,16 @@ const kInitialFilters = {
   Filter.vegan : false,
 };
 
-class TabsScreen extends StatefulWidget {
+class TabsScreen extends ConsumerStatefulWidget {         //Statefull -> ConsumerStatefulWidget
   const TabsScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() {
+  ConsumerState<TabsScreen> createState() { //State -> ConsumerState
     return _TabsScreenState();
   }
 }
 
-class _TabsScreenState extends State<TabsScreen> {
+class _TabsScreenState extends ConsumerState<TabsScreen> {   
   int _selectedPage = 0;
   final List<Meal> _favouritemeals = [];
 
@@ -75,7 +77,9 @@ class _TabsScreenState extends State<TabsScreen> {
   
   @override
   Widget build(BuildContext context) {
-    final availablemeals = dummyMeals.where((meal) {
+    final meals = ref.watch(mealsProvider);       //* * Using ref method as a listener here for provider in provider_pack.dart file 
+                                                  //? Using Provider instead of importing dummy data for understanding concepts
+    final availablemeals = meals.where((meal) {
       if(_selectedfilters[Filter.glutenFree]! && !meal.isGlutenFree){  //* _selectedfilters[Filter.glutenFree]! is true if it is toggeled in filter option and 
         return false;                                                  //* !meal.isGlutenFree is true if an indivisual meal is not gluten free so T && T = T where we return false to not select meal
       }
