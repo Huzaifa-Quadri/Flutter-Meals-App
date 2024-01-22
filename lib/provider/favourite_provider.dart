@@ -8,19 +8,21 @@ import 'package:meals/models/meal.dart';
 class FavMealsNotifier extends StateNotifier<List<Meal>>{  // Convention to add Notifier at end of class name
                                                   //Todo : State Notifier is generic class so we have to specify which kind of data will be managed by Notifier and ult by provider
   FavMealsNotifier() :  super([]);                //? A. Initial Value -> Empty list of meals; Passing to super here equal to type of speacified in angular brackets
-  void toggleMealFavouriteStatus(Meal meal){      //? B. Method to edit data
+  bool toggleMealFavouriteStatus(Meal meal){      //? B. Method to edit data
     final mealIsFav = state.contains(meal);
 
     if(mealIsFav){
       state = state.where((ml) => ml.id != meal.id).toList();
+      return false;
     }
     else
     {
-      state = [...state,meal];
+      state = [...state, meal];
+      return true;
     }
   }
 }
 
-final favouriteNotifierProvider = StateNotifierProvider<FavMealsNotifier, List<Meal>>(((ref) { 
+final favouritMealsProvider = StateNotifierProvider<FavMealsNotifier, List<Meal>>(((ref) { 
   return FavMealsNotifier();                                     //* And now this provider returns an instance of our notifier class so that we have this class for editing the state and for retrieving the state.
 }));
