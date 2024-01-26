@@ -65,11 +65,25 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
     //   body: 
     return AnimatedBuilder(
       animation: _animationHandler,
-      builder: (context, child) => Padding(padding: EdgeInsets.only(
-        top: 100 -_animationHandler.value * 100
+//*   /* First approach of delpoying SildeTransition which is more optimized than Padding one */
+      // builder: (context, child) => SlideTransition(
+      //   position: _animationHandler.drive(
+      //     Tween(
+      //       begin: const Offset(0, 0.3),    //* An offset then is a special kind of value used by Flutter to describe the well, amount of offset of an element from the actual position it would normally take.
+      //       end: const Offset(0, 0)
+      //     ),
+      //   ),
+      //   child: child,
+      //   ),
+//?   /* Second approach of delpoying SildeTransition with .animate object and options of different curve variations */
+      builder: (context, child) => SlideTransition(
+        position: Tween(                                   //? The Tween class creates tween objects and the name tween simply comes from the fact that this class and these objects are all about animating or describing the transition between, hence the name tween, two values. And for that, tween takes two values as you might guess, begin and end. And now here we wanna animate between two offsets because position wants an animation over offset values
+           begin: const Offset(0, 0.3),                   //* Offset simply takes two doubles, two numbers with decimal places. The first number describes the offset on the x-axis and the second number on the y-axis. So here where we're talking about sliding some element, we're basically saying how much to the right or left on the x-axis and how much to the top or bottom on the y-axis should we start?
+           end: const Offset(0, 0)
+        ).animate(CurvedAnimation(parent: _animationHandler, curve: Curves.easeInOutSine)),
+        child: child,
       ),
-      child: child,
-      ),
+
       child: GridView(
           padding: const EdgeInsets.all(24),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -88,7 +102,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
               )
           ],
         ),
-      // ),
     );
   }
 }
