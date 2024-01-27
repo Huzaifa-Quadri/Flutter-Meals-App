@@ -31,7 +31,9 @@ class Meals extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .headlineMedium!
-                    .copyWith(color: Theme.of(context).highlightColor))
+                    .copyWith(color: Theme.of(context).highlightColor),
+                  textAlign: TextAlign.center,
+                )
           ]),
     );
      
@@ -45,7 +47,7 @@ class Meals extends StatelessWidget {
     return bodyContent;
   }   
                     
-  //TODO : we can also eleminate double title other than conditionally by letting indivisula screen themselves set their own appbars intead of one appbar in Tabs Screen forward to indivisual displayed screens.  Code for that is :
+  //TODO : we can also eleminate double title other than conditionally by letting indivisual screen themselves set their own appbars intead of one appbar in Tabs Screen forward to indivisual displayed screens.  Code for that is :
   //* <Just Remove above if & Make following changes in Tabs Screen > -
    /*
 *     return Scaffold(

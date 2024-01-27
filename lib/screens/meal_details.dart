@@ -28,10 +28,13 @@ class MealDetails extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image.network(
-                meal.imageUrl,
-                height: 280,
-                width: double.infinity,
+              Hero(
+                tag : meal.id,
+                child: Image.network(
+                  meal.imageUrl,
+                  height: 280,
+                  width: double.infinity,
+                ),
               ),
       
               const SizedBox(height: 15,),
